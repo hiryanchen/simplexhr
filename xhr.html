@@ -1,0 +1,21 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<input id="idUrl" type="text" value="http://commondatastorage.googleapis.com/gtv-videos-bucket/ED_1280.mp4"></input>
+<button onclick="fetch()">Fetch</button>
+<div id="idContent"></div>
+<script>
+  function fetch() {
+    const url = $('#idUrl').val();
+    // Set the url on the video element
+    $('video')[0].src = url;
+
+    // Try to fetch the video data
+    $.ajax({
+      url: url
+    }).done(data => {
+      $('#idContent').val(data);
+    });
+  }
+</script>
+<video controls crossorigin="anonymous">
+  <track src="en.vtt" label="English subtitles" kind="subtitles" srclang="en" default="">
+</video>
